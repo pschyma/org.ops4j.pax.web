@@ -103,8 +103,8 @@ public class WarFormAuthIntegrationTest extends ITestBase {
 				.doGETandExecuteTest("http://127.0.0.1:8181/war-formauth/wc/sn");
 	}
 
-	@Ignore
 	@Test
+	@Ignore("This test assumes redirection/forward to /wc/example which isn't configured")
 	public void testSlash() throws Exception {
 		HttpTestClientFactory.createDefaultTestClient()
 				.withResponseAssertion("Response must contain '<h1>Hello World</h1>'",

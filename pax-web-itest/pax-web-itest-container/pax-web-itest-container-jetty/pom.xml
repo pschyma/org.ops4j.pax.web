@@ -363,11 +363,11 @@
 			<groupId>org.eclipse.jetty.http2</groupId>
 			<artifactId>http2-common</artifactId>
 		</dependency>
-		
-		
+
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-atinject_1.0_spec</artifactId>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
+			<version>1_2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -392,7 +392,7 @@
 		<dependency>
 			<groupId>org.apache.karaf</groupId>
 			<artifactId>manual</artifactId>
-			<version>3.0.1</version>
+			<version>4.0.1</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>
@@ -788,6 +788,8 @@
 						<MyFacesVersion>${jsf-myfaces.version}</MyFacesVersion>
 						<coverage.command>${jcoverage.command}</coverage.command>
 						<alpn-boot>${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn-version}/alpn-boot-${alpn-version}.jar</alpn-boot>
+						<!-- to configure pax-exam with pax.exam.system=default which gives us more control over installed bundles -->
+						<pax.exam.configuration>file:../../pax-web-itest-base/src/main/resources/controlled-exam.properties</pax.exam.configuration>
 					</systemPropertyVariables>
 					<argLine>${jcoverage.command} -Xss8m</argLine>
 					<forkMode>pertest</forkMode>
@@ -888,7 +890,7 @@
 				<dependency>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.framework</artifactId>
-					<version>5.0.1</version>
+					<version>5.6.2</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>

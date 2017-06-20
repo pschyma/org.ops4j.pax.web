@@ -35,7 +35,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.osgi>5.0.0</version.osgi>
 		<version.slf4j>1.7.12</version.slf4j>
 		<version.jsf>2.2</version.jsf>
 		<version.servlet>3.1.0</version.servlet>
@@ -47,23 +46,13 @@
 		<version.pax-web>4.2.1</version.pax-web>
 		<version.tipi.junit>4.12.0.1</version.tipi.junit>
 		<version.tipi.hamcrest>1.3.0.1</version.tipi.hamcrest>
-		<version.mockito>2.0.31-beta</version.mockito>
-		<version.myfaces>2.2.8</version.myfaces>
+		<version.mockito>1.9.5</version.mockito>
+		<version.myfaces>2.2.10</version.myfaces>
 		<version.mojarra>2.2.9</version.mojarra>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.core</artifactId>
-				<version>${version.osgi}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.compendium</artifactId>
-				<version>${version.osgi}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.ops4j.pax.tipi</groupId>
 				<artifactId>org.ops4j.pax.tipi.junit</artifactId>

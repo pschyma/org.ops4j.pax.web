@@ -240,6 +240,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
+			<version>1_2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
 			<version>1.2</version>
@@ -298,7 +304,7 @@
 		<dependency>
 			<groupId>org.apache.karaf</groupId>
 			<artifactId>manual</artifactId>
-			<version>3.0.1</version>
+			<version>4.0.1</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>
@@ -525,10 +531,14 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
@@ -619,6 +629,10 @@
 				<directory>src/test/resources-binary</directory>
 				<filtering>false</filtering>
 			</testResource>
+			<!--
+			 org.ops4j.pax.exam:exam-maven-plugin:generate-link-files goal will add
+			 ${project.build.directory}/pax-exam-links as additional <testResource>
+			-->
 		</testResources>
 		<plugins>
 			<plugin>
@@ -641,26 +655,6 @@
 							<tasks>
 								<mkdir dir="target/logs" />
 							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/target</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/test/resources</directory>
-								</resource>
-							</resources>
 						</configuration>
 					</execution>
 				</executions>
@@ -704,20 +698,12 @@
 					<includes>
 						<include>**/*IntegrationTest.java</include>
 					</includes>
-					<!-- This test will work if PAXWEB-154 and PAXWEB-123 are fixed -->
-					<excludes>
-						<!-- <exclude>**/JspFilterIntegrationTest.java</exclude> -->
-						<exclude>**/JettyWebIntegrationTest.java</exclude>
-						<!-- Test for PAXWEB-382 -->
-						<exclude>**/WarJSFFaceletsIntegrationTest.java</exclude>
-						<!-- Test for PAXWEB-646 -->
-						<!-- <exclude>**/WarJSFIntegrationTest.java</exclude> -->
-						<!-- <exclude>**/WarJSFPrimefacesIntegrationTest.java</exclude> -->
-					</excludes>
 					<systemPropertyVariables>
 						<ProjectVersion>${project.version}</ProjectVersion>
 						<MyFacesVersion>${jsf-myfaces.version}</MyFacesVersion>
 						<coverage.command>${jcoverage.command}</coverage.command>
+						<!-- to configure pax-exam with pax.exam.system=default which gives us more control over installed bundles -->
+						<pax.exam.configuration>file:../../pax-web-itest-base/src/main/resources/controlled-exam.properties</pax.exam.configuration>
 					</systemPropertyVariables>
 					<argLine>${jcoverage.command} -Xss8m</argLine>
 					<forkMode>pertest</forkMode>
@@ -818,7 +804,7 @@
 				<dependency>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.framework</artifactId>
-					<version>5.0.1</version>
+					<version>5.6.2</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>

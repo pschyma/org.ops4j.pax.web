@@ -74,6 +74,7 @@
     <module>undertow-auth-config-fragment</module>
     <module>war-formauth</module>
     <module>war-introspection</module>
+    <module>war-introspection-bundle</module>
     <module>war-jsf</module>
 	<module>war-jsf-cdi</module>
     <module>war-jsf-primefaces</module>
@@ -81,6 +82,7 @@
     <module>jsp-filter</module>
     <module>simple-filter</module>
     <module>war-jetty-web</module>
+    <module>war-tomcat-resource</module>
     <module>war-simple</module>
     <module>war-spring</module>
     <module>war-spring-osgi</module>
